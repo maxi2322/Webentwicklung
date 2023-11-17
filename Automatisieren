@@ -1,0 +1,33 @@
+Um im Active Directory das Attribut für die Webseite eines Benutzers zu ändern, müssen Sie zuerst sicherstellen, dass ein solches Attribut existiert oder ein geeignetes Attribut für diesen Zweck bestimmt wird. Das Standard-Active Directory-Schema enthält zwar viele Attribute, aber möglicherweise keines, das explizit als "Webseite" gekennzeichnet ist. Ein häufig verwendetes Attribut für zusätzliche Informationen ist `info` oder `description`.
+
+Hier ist ein PowerShell-Skript, das das Attribut `info` für einen bestimmten Benutzer aktualisiert. Sie können dieses Attribut durch ein anderes ersetzen, wenn Ihr Active Directory-Schema ein spezifischeres Attribut für Webseiteninformationen hat:
+
+```powershell
+# Import des Active Directory Moduls
+Import-Module ActiveDirectory
+
+# Benutzername und das Attribut für die Webseite definieren
+$username = "Max derTester"
+$website = "http://DerSupertester.de"
+
+# Benutzer im Active Directory suchen
+$user = Get-ADUser -Filter "Name -eq '$username'"
+
+# Überprüfen, ob der Benutzer gefunden wurde
+if ($user -ne $null) {
+    # Webseite im 'info'-Attribut für den gefundenen Benutzer aktualisieren
+    Set-ADUser -Identity $user -Replace @{info=$website}
+    Write-Host "Webseite für Benutzer [$username] auf [$website] aktualisiert."
+} else {
+    Write-Host "Benutzer [$username] nicht gefunden."
+}
+```
+
+In diesem Skript:
+
+- Das Active Directory-Modul wird importiert.
+- Der Benutzername `Max derTester` und die Webseite `http://DerSupertester.de` werden definiert.
+- Der Benutzer wird im Active Directory gesucht.
+- Wenn der Benutzer gefunden wird, wird das `info`-Attribut mit der neuen Webseiten-URL aktualisiert.
+
+Stellen Sie sicher, dass Sie die entsprechenden Berechtigungen haben, um Änderungen im Active Directory vorzunehmen. Testen Sie das Skript in einer sicheren Umgebung, bevor Sie es im produktiven Einsatz verwenden.
