@@ -1,0 +1,21 @@
+# Import des Active Directory Moduls
+Import-Module ActiveDirectory
+
+# Liste der Benutzernamen und das Attribut für die Webseite definieren
+$usernames = @("Max derTester", "Benutzer2", "Benutzer3") # Fügen Sie hier weitere Benutzernamen hinzu
+$website = "http://DerSupertester.de"
+
+# Durchgehen aller Benutzer in der Liste
+foreach ($username in $usernames) {
+    # Benutzer im Active Directory suchen
+    $user = Get-ADUser -Filter "Name -eq '$username'"
+
+    # Überprüfen, ob der Benutzer gefunden wurde
+    if ($user -ne $null) {
+        # Webseite im 'info'-Attribut für den gefundenen Benutzer aktualisieren
+        Set-ADUser -Identity $user -Replace @{info=$website}
+        Write-Host "Webseite für Benutzer [$username] auf [$website] aktualisiert."
+    } else {
+        Write-Host "Benutzer [$username] nicht gefunden."
+    }
+}
