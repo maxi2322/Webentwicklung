@@ -1,4 +1,3 @@
-# Import des Active Directory Moduls
 Import-Module ActiveDirectory
 
 # OU-Pfad und das Attribut für die Webseite definieren
