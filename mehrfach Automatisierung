@@ -12,8 +12,8 @@ foreach ($username in $usernames) {
 
     # Überprüfen, ob der Benutzer gefunden wurde
     if ($user -ne $null) {
-        # Webseite im 'info'-Attribut für den gefundenen Benutzer aktualisieren
-        Set-ADUser -Identity $user -Replace @{info=$website}
+        # Webseite im 'wWWHomePage'-Attribut für den gefundenen Benutzer aktualisieren
+        Set-ADUser -Identity $user -Replace @{wWWHomePage=$website}
         Write-Host "Webseite für Benutzer [$username] auf [$website] aktualisiert."
     } else {
         Write-Host "Benutzer [$username] nicht gefunden."
