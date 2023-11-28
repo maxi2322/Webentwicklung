@@ -14,3 +14,4 @@ https://www.youtube.com/watch?v=sTQEPKTPx8s&list=PL4psuuBzr38450N4fTXNzM9sNZdhBs
 https://www.youtube.com/watch?v=8dWL3wF_OMw&list=WL&index=2
 https://github.com/Tutorialwork/Tutorials
 https://youtu.be/j59qQ7YWLxw?si=hbZF6x4GokrnlUAF
+https://mdbootstrap.com/docs/standard/getting-started/installation/
