@@ -8,7 +8,7 @@
 <body>
     <?php
     if(isset($_POST["submit"])){
-    mail("memaxi476@gmail.com", "Kontaktformular", 'Name: '.$_POST["name"]. 'Email: '.$_POST["email"]. 'Priorität' .$_POST["priorität"]. 'Nachricht: '.$_POST["message"]);
+    mail("", "Kontaktformular", 'Name: '.$_POST["name"]. 'Email: '.$_POST["email"]. 'Priorität' .$_POST["priorität"]. 'Nachricht: '.$_POST["message"]);
     ?>
     <h1 style="color: green;">Das Kontaktformular wurde Abgesendet!</h1>
     <?php
@@ -29,12 +29,6 @@
 </body>
 </html>
 -------------------------------------------------------------------------------
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +39,7 @@
 <body>
     <?php
     if(isset($_POST["submit"])){
-    mail("memaxi476@gmail.com", "Kontaktformular", 'Name: '.$_POST["name"]. 'Email: '.$_POST["email"]. 'Priorität' .$_POST["priorität"]. 'Nachricht: '.$_POST["message"]);
+    mail("", "Kontaktformular", 'Name: '.$_POST["name"]. 'Email: '.$_POST["email"]. 'Priorität' .$_POST["priorität"]. 'Nachricht: '.$_POST["message"]);
     ?>
     <h1 style="color: green;">Das Kontaktformular wurde Abgesendet!</h1>
     <?php
