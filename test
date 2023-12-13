@@ -1,0 +1,14 @@
+# Pfad zur OU
+$ouPath = "OU=???,DC=???"
+
+# Pfad zur CSV-Datei
+$csvPath = "C:\\temp\\AD-Userliste.csv"
+
+# Eigenschaften der Benutzer, die exportiert werden sollen
+$properties = @("Name", "UserPrincipalName")
+
+# Benutzerinformationen aus der OU abrufen
+$users = Get-ADUser -SearchBase $ouPath -Filter * -Properties $properties
+
+# Benutzerinformationen in die CSV-Datei exportieren
+$users | Select-Object -Property $properties | Export-CSV $csvPath -NoTypeInformation -Encoding UTF8
