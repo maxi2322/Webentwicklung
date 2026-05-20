@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AGB &amp; Garantie – LUMIÈRE TECH</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dark:#0E0B08;--dark2:#131008;--mid:#1e1508;--card:#171209;--gold:#C9A96E;--gold-lt:#E8D5B0;--gold-dk:#7A5820;--cream:#F5EDE0;--ease:cubic-bezier(.16,1,.3,1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{background:var(--dark);color:var(--cream);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+::selection{background:var(--gold);color:var(--dark);}
+#cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+#cursor-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(201,169,110,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .4s var(--ease),height .4s var(--ease);}
+::-webkit-scrollbar{width:2px;}::-webkit-scrollbar-track{background:var(--dark);}::-webkit-scrollbar-thumb{background:var(--gold-dk);}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 56px;display:flex;align-items:center;justify-content:space-between;background:rgba(14,11,8,.9);backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,169,110,.08);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;letter-spacing:.14em;color:var(--gold-lt);}
+.nav-logo span{color:var(--gold);font-style:italic;}
+.nav-back{display:inline-flex;align-items:center;gap:8px;font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(235,224,206,.38);text-decoration:none;transition:color .3s;cursor:none;}
+.nav-back:hover{color:var(--gold);}
+.nav-back svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.5;}
+
+.hero{min-height:46vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:136px 56px 64px;text-align:center;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(201,169,110,.15) 0%,transparent 60%),var(--dark);animation:hpulse 10s ease-in-out infinite alternate;}
+@keyframes hpulse{to{background:radial-gradient(ellipse 70% 50% at 50% 10%,rgba(201,169,110,.2) 0%,transparent 60%),var(--dark);}}
+.hero-grain{position:absolute;inset:0;opacity:.032;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.hero-content{position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(201,169,110,.22);padding:6px 18px;margin-bottom:26px;font-size:8.5px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);opacity:0;transform:translateY(14px);animation:fadeup .7s var(--ease) .1s forwards;}
+.pulse{width:5px;height:5px;background:var(--gold);border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6.5vw,80px);font-weight:300;line-height:.96;opacity:0;transform:translateY(22px);animation:fadeup .9s var(--ease) .25s forwards;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:13px;font-weight:300;color:rgba(235,224,206,.4);margin:18px auto 0;max-width:460px;line-height:1.9;opacity:0;transform:translateY(14px);animation:fadeup .8s var(--ease) .42s forwards;}
+@keyframes fadeup{to{opacity:1;transform:translateY(0);}}
+
+.ticker{background:var(--gold);padding:9px 0;overflow:hidden;}
+.ticker-inner{display:flex;animation:scroll 22s linear infinite;white-space:nowrap;}
+.ti{display:inline-flex;align-items:center;gap:20px;padding:0 26px;font-size:9.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--dark);flex-shrink:0;}
+.ts{opacity:.3;}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.tabs-nav{display:flex;background:var(--dark2);border-bottom:1px solid rgba(201,169,110,.1);position:sticky;top:57px;z-index:50;}
+.tab-btn{flex:1;padding:18px 24px;font-family:'Jost',sans-serif;font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(235,224,206,.35);background:transparent;border:none;cursor:none;transition:color .3s,background .3s;position:relative;}
+.tab-btn::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform .35s var(--ease);}
+.tab-btn.active{color:var(--gold-lt);background:rgba(201,169,110,.04);}
+.tab-btn.active::after{transform:scaleX(1);}
+.tab-btn:hover{color:rgba(235,224,206,.7);}
+
+.rv{opacity:0;transform:translateY(28px);transition:opacity .75s var(--ease),transform .75s var(--ease);}
+.rv.vis{opacity:1;transform:translateY(0);}
+.rv2{opacity:0;transform:translateY(28px);transition:opacity .75s var(--ease) .12s,transform .75s var(--ease) .12s;}
+.rv2.vis{opacity:1;transform:translateY(0);}
+
+.sec{padding:88px 56px;max-width:1000px;margin:0 auto;}
+.sec-label{font-size:8.5px;font-weight:700;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3.5vw,50px);font-weight:400;line-height:1.08;margin-bottom:48px;}
+.sec-title em{font-style:italic;color:var(--gold);}
+
+/* GARANTIE CARDS */
+.g-intro{background:var(--mid);border:1px solid rgba(201,169,110,.12);padding:32px 36px;margin-bottom:40px;position:relative;overflow:hidden;}
+.g-intro::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold-lt),var(--gold));}
+.g-intro p{font-size:15px;font-weight:300;color:rgba(235,224,206,.65);line-height:1.85;}
+.g-intro strong{color:var(--gold-lt);font-weight:600;font-family:'Cormorant Garamond',serif;font-size:17px;}
+
+.g-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(201,169,110,.06);margin-bottom:40px;}
+.g-card{background:var(--card);padding:36px 32px;position:relative;overflow:hidden;transition:background .35s;}
+.g-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-dk),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);}
+.g-card:hover{background:var(--mid);}
+.g-card:hover::before{transform:scaleX(1);}
+.g-card-num{font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(201,169,110,.18);margin-bottom:14px;}
+.g-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold-lt);margin-bottom:14px;line-height:1.2;}
+.g-card p{font-size:12px;font-weight:300;color:rgba(235,224,206,.38);line-height:1.8;}
+.g-card ul{list-style:none;padding:0;margin-top:4px;}
+.g-card ul li{font-size:12px;font-weight:300;color:rgba(235,224,206,.38);line-height:1.8;padding-left:18px;position:relative;}
+.g-card ul li::before{content:'—';position:absolute;left:0;color:var(--gold-dk);font-size:9px;top:3px;}
+.g-card-full{grid-column:1/-1;}
+
+.g-highlight{background:linear-gradient(160deg,#1e1508,#110d06);border:1px solid rgba(201,169,110,.18);padding:32px 36px;margin-bottom:40px;display:flex;align-items:center;gap:32px;}
+.g-highlight-icon{font-size:40px;flex-shrink:0;}
+.g-highlight h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold-lt);margin-bottom:8px;}
+.g-highlight p{font-size:12px;font-weight:300;color:rgba(235,224,206,.42);line-height:1.8;}
+
+.g-note{background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.15);padding:24px 30px;text-align:center;}
+.g-note p{font-size:13px;font-style:italic;font-weight:300;color:rgba(235,224,206,.45);line-height:1.75;}
+.g-note strong{color:var(--gold-lt);font-style:normal;font-weight:600;}
+
+/* AGB */
+.agb-intro{background:var(--mid);border:1px solid rgba(201,169,110,.12);padding:32px 36px;margin-bottom:40px;position:relative;overflow:hidden;}
+.agb-intro::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold-lt),var(--gold));}
+.agb-intro p{font-size:14px;font-weight:300;color:rgba(235,224,206,.5);line-height:1.85;}
+
+.agb-list{display:flex;flex-direction:column;gap:2px;background:rgba(201,169,110,.06);}
+.agb-item{background:var(--card);padding:28px 36px;display:flex;gap:28px;align-items:flex-start;transition:background .3s;position:relative;overflow:hidden;}
+.agb-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-dk),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);}
+.agb-item:hover{background:var(--mid);}
+.agb-item:hover::before{transform:scaleX(1);}
+.agb-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(201,169,110,.15);flex-shrink:0;width:44px;line-height:1;padding-top:4px;}
+.agb-body h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gold-lt);margin-bottom:8px;}
+.agb-body p{font-size:12px;font-weight:300;color:rgba(235,224,206,.38);line-height:1.8;}
+
+/* TRUST */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,169,110,.06);border-top:1px solid rgba(201,169,110,.06);border-bottom:1px solid rgba(201,169,110,.06);}
+.trust-item{background:var(--dark);padding:32px 28px;display:flex;align-items:flex-start;gap:14px;}
+.trust-ico{font-size:22px;flex-shrink:0;padding-top:2px;}
+.trust-label{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.trust-desc{font-size:11px;font-weight:300;color:rgba(235,224,206,.32);line-height:1.7;}
+
+.cta-band{padding:80px 56px;text-align:center;background:var(--dark2);position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 50% 50%,rgba(201,169,110,.08) 0%,transparent 60%);pointer-events:none;}
+.cta-inner{position:relative;z-index:1;}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4.5vw,58px);font-weight:300;line-height:1;margin-bottom:12px;}
+.cta-title em{font-style:italic;color:var(--gold);}
+.cta-sub{font-size:13px;font-weight:300;color:rgba(235,224,206,.38);line-height:1.85;max-width:420px;margin:0 auto 38px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);padding:15px 42px;font-family:'Jost',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--dark);border:none;cursor:none;position:relative;overflow:hidden;transition:transform .2s,box-shadow .3s;text-decoration:none;display:inline-block;}
+.btn-gold::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.18) 0%,transparent 55%);}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 42px rgba(201,169,110,.3);}
+.btn-outline{background:transparent;border:1px solid rgba(201,169,110,.28);padding:15px 42px;font-family:'Jost',sans-serif;font-size:9.5px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(235,224,206,.5);cursor:none;transition:border-color .3s,color .3s;text-decoration:none;display:inline-block;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-lt);}
+
+footer{background:var(--dark);border-top:1px solid rgba(201,169,110,.08);padding:34px 56px;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;letter-spacing:.14em;color:rgba(201,169,110,.38);}
+.footer-note{font-size:9.5px;font-weight:300;color:rgba(235,224,206,.18);letter-spacing:.04em;text-align:center;}
+.footer-copy{font-size:9.5px;font-weight:300;color:rgba(235,224,206,.15);letter-spacing:.05em;}
+
+@media(max-width:900px){.g-grid{grid-template-columns:1fr;}.g-card-full{grid-column:auto;}.trust{grid-template-columns:1fr;}.g-highlight{flex-direction:column;gap:16px;}}
+@media(max-width:700px){nav{padding:14px 20px;}.hero{padding:110px 20px 56px;}.sec{padding:60px 20px;}.tabs-nav{top:53px;}.agb-item{padding:24px 20px;gap:18px;}.g-intro,.agb-intro,.g-highlight{padding:24px 20px;}.cta-band,.footer{padding-left:20px;padding-right:20px;}}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav>
+  <div class="nav-logo">LUMIÈRE <span>TECH</span></div>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Zur Hauptseite
+  </a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="pulse"></span>Transparenz &amp; Vertrauen</div>
+    <h1 class="hero-title">AGB &amp;<br><em>Garantie</em></h1>
+    <p class="hero-sub">Klare Bedingungen, faire Garantie – für Studios, die auf Qualität und Verlässlichkeit setzen.</p>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ti">24 Monate Garantie <span class="ts">✦</span> CE &amp; TÜV Zertifiziert <span class="ts">✦</span> Service in Deutschland <span class="ts">✦</span> 24–48h Reaktionszeit <span class="ts">✦</span> Nur für gewerbliche Kunden <span class="ts">✦</span> Autorisierter Servicepartner <span class="ts">✦</span></div>
+    <div class="ti">24 Monate Garantie <span class="ts">✦</span> CE &amp; TÜV Zertifiziert <span class="ts">✦</span> Service in Deutschland <span class="ts">✦</span> 24–48h Reaktionszeit <span class="ts">✦</span> Nur für gewerbliche Kunden <span class="ts">✦</span> Autorisierter Servicepartner <span class="ts">✦</span></div>
+  </div>
+</div>
+
+<!-- TAB NAVIGATION -->
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="showTab('garantie',this)">🛡 Garantiebedingungen</button>
+  <button class="tab-btn" onclick="showTab('agb',this)">📄 Allgemeine Geschäftsbedingungen</button>
+</div>
+
+<!-- GARANTIE -->
+<div id="tab-garantie">
+  <div style="background:var(--dark2);">
+    <div class="sec">
+
+      <div class="sec-label rv">Garantiebedingungen</div>
+      <h2 class="sec-title rv">Ihre Garantie bei<br><em>LUMIÈRE TECH</em></h2>
+
+      <div class="g-intro rv">
+        <p>Wir gewähren auf alle von uns verkauften Geräte eine Garantie von <strong>24 Monaten</strong> ab Kaufdatum – für Ihre Sicherheit und maximale Planbarkeit in Ihrem Studio.</p>
+      </div>
+
+      <div class="g-highlight rv">
+        <div class="g-highlight-icon">🛡️</div>
+        <div>
+          <h3>24 Monate volle Garantie</h3>
+          <p>Ab Kaufdatum auf alle technischen Defekte durch Material- oder Herstellungsfehler. Reparaturen durch autorisierte Servicepartner in Deutschland – mit einer Reaktionszeit von 24–48 Stunden.</p>
+        </div>
+      </div>
+
+      <div class="g-grid">
+        <div class="g-card rv">
+          <div class="g-card-num">01</div>
+          <h3>Garantieumfang</h3>
+          <p>Die Garantie umfasst alle technischen Defekte, die auf Material- oder Herstellungsfehler zurückzuführen sind. Sichtbare Ergebnisse, auf die Sie sich verlassen können.</p>
+        </div>
+        <div class="g-card rv2">
+          <div class="g-card-num">02</div>
+          <h3>Ausgeschlossen sind</h3>
+          <ul>
+            <li>Verschleißteile (z. B. Filter, Dichtungen, Handstück-Verschleiß)</li>
+            <li>Schäden durch unsachgemäße Nutzung</li>
+            <li>Eigenständige Reparaturversuche</li>
+            <li>Transportschäden nach Übergabe</li>
+          </ul>
+        </div>
+        <div class="g-card rv">
+          <div class="g-card-num">03</div>
+          <h3>Garantieabwicklung</h3>
+          <p>Kontaktaufnahme per WhatsApp oder E-Mail, Übersendung von Fotos oder Videos zur Fehleranalyse sowie Ersteinschätzung durch unseren Support innerhalb von 24–48 Stunden.</p>
+        </div>
+        <div class="g-card rv2">
+          <div class="g-card-num">04</div>
+          <h3>Lösungsoptionen</h3>
+          <ul>
+            <li>Anleitung zur Selbstbehebung</li>
+            <li>Zusendung von Ersatzteilen</li>
+            <li>Organisation eines Servicetermins</li>
+            <li>Reparatur durch autorisierten Partner</li>
+          </ul>
+        </div>
+        <div class="g-card rv">
+          <div class="g-card-num">05</div>
+          <h3>Reparatur &amp; Austausch</h3>
+          <p>Sollte eine Reparatur notwendig sein, wird diese durch einen autorisierten Servicepartner in Deutschland durchgeführt – professionell und zuverlässig.</p>
+        </div>
+        <div class="g-card rv2">
+          <div class="g-card-num">06</div>
+          <h3>Garantieverlängerung</h3>
+          <p>Eine Verlängerung der Garantie über die 24 Monate hinaus kann individuell vereinbart werden. Sprechen Sie uns bei Interesse gerne an.</p>
+        </div>
+      </div>
+
+      <div class="g-note rv">
+        <p><strong>LUMIÈRE TECH</strong> steht für Qualität, Sicherheit und zuverlässigen Service – damit Sie sich auf das Wesentliche konzentrieren können: Ihren Erfolg.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- AGB -->
+<div id="tab-agb" style="display:none;">
+  <div style="background:var(--dark2);">
+    <div class="sec">
+
+      <div class="sec-label rv">Allgemeine Geschäftsbedingungen</div>
+      <h2 class="sec-title rv">Unsere AGB –<br><em>klar &amp; fair</em></h2>
+
+      <div class="agb-intro rv">
+        <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Verkäufe von Geräten durch LUMIÈRE TECH an gewerbliche Kunden. Stand: 2025.</p>
+      </div>
+
+      <div class="agb-list rv">
+        <div class="agb-item">
+          <div class="agb-num">1</div>
+          <div class="agb-body">
+            <h3>Geltungsbereich</h3>
+            <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Verkäufe von Geräten durch LUMIÈRE TECH an gewerbliche Kunden.</p>
+          </div>
+        </div>
+        <div class="agb-item">
+          <div class="agb-num">2</div>
+          <div class="agb-body">
+            <h3>Vertragsabschluss</h3>
+            <p>Ein Kaufvertrag kommt durch schriftliche Bestätigung oder Rechnungsstellung zustande.</p>
+          </div>
+        </div>
+        <div class="agb-item">
+          <div class="agb-num">3</div>
+          <div class="agb-body">
+            <h3>Lieferung und Versand</h3>
+            <p>Die Lieferung erfolgt nach Vereinbarung. Versandkosten werden individuell ausgewiesen.</p>
+          </div>
+        </div>
+        <div class="agb-item">
+          <div class="agb-num">4</div>
+          <div class="agb-body">
+            <h3>Preise</h3>
+            <p>Alle Preise verstehen sich netto zzgl. gesetzlicher Mehrwertsteuer.</p>
+          </div>
+        </div>
+        <div class="agb-item">
+          <div class="agb-num">5</div>
+          <div class="agb-body">
+            <h3>Zahlung</h3>
+            <p>Die Zahlung erfolgt per Überweisung, PayPal oder nach individueller Vereinbarung.</p>
+          </div>
+        </div>
+        <div class="agb-item">
+          <div class="agb-num">6</div>
+          <div class="agb-body">
+            <h3>Eigentumsvorbehalt</h3>
+            <p>Die Ware bleibt bis zur vollständigen Bezahlung Eigentum von LUMIÈRE TECH.</p>
+          </div>
+        </div>
+        <div class="agb-item">
+          <div class="agb-num">7</div>
+          <div class="agb-body">
+            <h3>Gewährleistung und Garantie</h3>
+            <p>Es gelten die vereinbarten Garantiebedingungen. Schäden durch unsachgemäße Nutzung sind ausgeschlossen.</p>
+          </div>
+        </div>
+        <div class="agb-item">
+          <div class="agb-num">8</div>
+          <div class="agb-body">
+            <h3>Haftung</h3>
+            <p>LUMIÈRE TECH haftet nur für Vorsatz und grobe Fahrlässigkeit. Für unsachgemäße Anwendung durch den Kunden wird keine Haftung übernommen.</p>
+          </div>
+        </div>
+        <div class="agb-item">
+          <div class="agb-num">9</div>
+          <div class="agb-body">
+            <h3>Schulung und Nutzung</h3>
+            <p>Der Kunde ist verpflichtet, die Geräte gemäß Anleitung und Schulung zu verwenden.</p>
+          </div>
+        </div>
+        <div class="agb-item">
+          <div class="agb-num">10</div>
+          <div class="agb-body">
+            <h3>Gerichtsstand</h3>
+            <p>Gerichtsstand ist Deutschland.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="trust">
+  <div class="trust-item rv"><span class="trust-ico">🛡️</span><div><div class="trust-label">24 Monate Garantie</div><div class="trust-desc">Reparatur durch autorisierten Servicepartner in Deutschland. Reaktionszeit 24–48 Std.</div></div></div>
+  <div class="trust-item rv2"><span class="trust-ico">✅</span><div><div class="trust-label">CE &amp; TÜV Zertifiziert</div><div class="trust-desc">Alle Geräte entsprechen den europäischen Sicherheits- und Qualitätsstandards.</div></div></div>
+  <div class="trust-item rv"><span class="trust-ico">📦</span><div><div class="trust-label">Schulung inklusive</div><div class="trust-desc">Persönliche Einweisung und Nutzungsanleitung bei jedem Gerät.</div></div></div>
+</div>
+
+<div class="cta-band">
+  <div class="cta-inner">
+    <div class="sec-label rv" style="margin-bottom:10px;">Fragen?</div>
+    <h2 class="cta-title rv">Wir sind<br><em>für Sie da</em></h2>
+    <p class="cta-sub rv">Bei Fragen zu Garantie oder AGB stehen wir Ihnen jederzeit zur Verfügung – schnell, persönlich und unkompliziert.</p>
+    <div class="cta-btns rv">
+      <a href="index.html#kontakt" class="btn-gold">Kontakt aufnehmen →</a>
+      <a href="mailto:info@lumiere-tech.de" class="btn-outline">info@lumiere-tech.de</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">LUMIÈRE TECH</div>
+    <div class="footer-note">Alle Preise netto zzgl. MwSt. · Nur für gewerbliche Kunden · Stand 2025</div>
+    <div class="footer-copy">© 2025 LUMIÈRE TECH</div>
+  </div>
+</footer>
+
+<script>
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.07});
+document.querySelectorAll('.rv,.rv2').forEach(el=>obs.observe(el));
+
+function showTab(tab, btn) {
+  document.getElementById('tab-garantie').style.display = tab === 'garantie' ? 'block' : 'none';
+  document.getElementById('tab-agb').style.display = tab === 'agb' ? 'block' : 'none';
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Re-trigger reveal animations
+  document.querySelectorAll('.rv,.rv2').forEach(el => {
+    el.classList.remove('vis');
+    setTimeout(() => obs.observe(el), 50);
+  });
+}
+</script>
+</body>
+</html>
